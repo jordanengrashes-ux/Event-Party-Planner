@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event & Party Planner</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-alt: #1f2937;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-strong: #0ea5e9;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --border: rgba(148, 163, 184, 0.2);
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 30%),
+        linear-gradient(180deg, #020617 0%, #0f172a 100%);
+      color: var(--text);
+    }
+
+    header {
+      padding: 2rem 1.5rem 1rem;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.04em;
+    }
+
+    p.lead {
+      margin: 0.75rem auto 0;
+      max-width: 42rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+      gap: 1.5rem;
+      padding: 0 1rem 2rem;
+      max-width: calc(100vw - 2rem);
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.25);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 1.5rem 1.5rem 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .card-header h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    input,
+    textarea,
+    select,
+    button {
+      font: inherit;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border-radius: 0.85rem;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      background: rgba(15, 23, 42, 0.88);
+      color: var(--text);
+      padding: 0.95rem 1rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .inline-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      padding: 0.95rem 1.2rem;
+      color: var(--text);
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    .secondary {
+      background: rgba(148, 163, 184, 0.12);
+      color: var(--text);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.5rem 0.8rem;
+      background: rgba(148, 163, 184, 0.12);
+      color: var(--text);
+      font-size: 0.9rem;
+      margin: 0.25rem 0.25rem 0 0;
+    }
+
+    .theme-list,
+    .guest-list,
+    .activity-list,
+    .summary-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .theme-item,
+    .guest-item,
+    .activity-item,
+    .summary-item {
+      background: var(--panel-alt);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-radius: 1rem;
+      padding: 1rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .theme-item button,
+    .guest-item button,
+    .activity-item button {
+      width: fit-content;
+      font-size: 0.85rem;
+      background: rgba(71, 85, 105, 0.14);
+    }
+
+    .theme-item.active {
+      border-color: rgba(56, 189, 248, 0.45);
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    .theme-item span {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .theme-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .theme-card {
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+      background: rgba(15, 23, 42, 0.88);
+      cursor: pointer;
+    }
+
+    .theme-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .theme-card.active {
+      background: rgba(56, 189, 248, 0.14);
+      border-color: rgba(56, 189, 248, 0.65);
+    }
+
+    .theme-card h3 {
+      margin: 0 0 0.25rem;
+      font-size: 1rem;
+    }
+
+    .theme-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .drag-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1.2fr;
+      gap: 1rem;
+    }
+
+    .drag-panel {
+      min-height: 320px;
+      border: 2px dashed rgba(148, 163, 184, 0.24);
+      border-radius: 1rem;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: rgba(15, 23, 42, 0.78);
+    }
+
+    .drag-panel.dragover {
+      border-color: rgba(56, 189, 248, 0.6);
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    .drag-panel h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .activity-options {
+      display: grid;
+      gap: 0.75rem;
+      flex: 1;
+      overflow: auto;
+      padding-right: 0.15rem;
+    }
+
+    .activity-card {
+      display: grid;
+      grid-template-columns: auto minmax(160px, 1fr) auto;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 0.95rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      background: rgba(15, 23, 42, 0.88);
+      cursor: grab;
+    }
+
+    .activity-card.dragging {
+      opacity: 0.5;
+    }
+
+    .activity-card span {
+      font-size: 0.95rem;
+      min-width: 60px;
+    }
+
+    .activity-card-meta {
+      display: grid;
+      gap: 0.35rem;
+      min-width: 160px;
+    }
+
+    .activity-card-meta label {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .activity-card-meta input {
+      width: 100%;
+      border-radius: 0.85rem;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      background: rgba(15, 23, 42, 0.88);
+      color: var(--text);
+      padding: 0.65rem 0.8rem;
+    }
+
+    .activity-card button {
+      margin-left: auto;
+      border-radius: 999px;
+      padding: 0.55rem 0.75rem;
+      background: rgba(239, 68, 68, 0.14);
+      color: #fecaca;
+    }
+
+    .activity-destination {
+      display: grid;
+      gap: 0.75rem;
+      flex: 1;
+    }
+
+    .activity-dropzone {
+      flex: 1;
+      min-height: 120px;
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      padding: 1rem;
+      background: rgba(15, 23, 42, 0.9);
+      overflow: auto;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .activity-dropzone.empty {
+      color: var(--muted);
+    }
+
+    .activity-card.moved {
+      cursor: default;
+    }
+
+    .guest-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .guest-item {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(16, 185, 129, 0.12);
+      color: #a7f3d0;
+      border-radius: 999px;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.85rem;
+    }
+
+    .status-pending {
+      background: rgba(245, 158, 11, 0.12);
+      color: #fcd34d;
+    }
+
+    .status-no {
+      background: rgba(239, 68, 68, 0.12);
+      color: #fecaca;
+    }
+
+    .summary-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .summary-card {
+      background: rgba(31, 41, 55, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+
+    .summary-card h3 {
+      margin: 0 0 0.75rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 980px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .inline-grid,
+      .theme-options,
+      .drag-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Event & Party Planner</h1>
+    <p class="lead">Design your next celebration with a full event builder, themed party options, guest RSVP management, and a drag-and-drop activity planner—all in one single page.</p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="event-title">
+      <div class="card-header">
+        <h2 id="event-title">Create your event</h2>
+        <span class="pill">Step 1</span>
+      </div>
+      <div class="card-body">
+        <form id="event-form">
+          <div class="inline-grid">
+            <div>
+              <label for="event-name">Event name</label>
+              <input id="event-name" type="text" placeholder="Summer Bash" required />
+            </div>
+            <div>
+              <label for="event-date">Date</label>
+              <input id="event-date" type="date" required />
+            </div>
+          </div>
+
+          <div class="inline-grid">
+            <div>
+              <label for="event-location">Location</label>
+              <input id="event-location" type="text" placeholder="Beach House" required />
+            </div>
+            <div>
+              <label for="event-theme">Theme</label>
+              <select id="event-theme">
+                <option value="Birthday">Birthday</option>
+                <option value="Holiday">Holiday</option>
+                <option value="Costume">Costume</option>
+                <option value="Sports">Sports</option>
+                <option value="Formal">Formal</option>
+                <option value="Casual">Casual</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="inline-grid">
+            <div>
+              <label for="event-start">Start time</label>
+              <input id="event-start" type="time" required />
+            </div>
+            <div>
+              <label for="event-end">End time</label>
+              <input id="event-end" type="time" required />
+            </div>
+          </div>
+
+          <label for="event-description">Description</label>
+          <textarea id="event-description" placeholder="Add a few details about the celebration..."></textarea>
+
+          <div class="button-row">
+            <button type="button" id="save-event">Save event details</button>
+            <button type="button" class="secondary" id="reset-event">Reset form</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="theme-title">
+      <div class="card-header">
+        <h2 id="theme-title">Party theme options</h2>
+        <span class="pill">Step 2</span>
+      </div>
+      <div class="card-body">
+        <div class="theme-options" id="theme-options">
+          <article class="theme-card active" data-theme="Birthday">
+            <h3>Birthday</h3>
+            <p>Bright balloons, cake, and cheerful decorations.</p>
+          </article>
+          <article class="theme-card" data-theme="Holiday">
+            <h3>Holiday</h3>
+            <p>Festive lights, seasonal accents, and cozy spirit.</p>
+          </article>
+          <article class="theme-card" data-theme="Costume">
+            <h3>Costume</h3>
+            <p>Dress-up fun, themed contests, and playful flair.</p>
+          </article>
+          <article class="theme-card" data-theme="Sports">
+            <h3>Sports</h3>
+            <p>Team games, jerseys, and competitive energy.</p>
+          </article>
+          <article class="theme-card" data-theme="Formal">
+            <h3>Formal</h3>
+            <p>Elegant evening, refined details, and polished style.</p>
+          </article>
+          <article class="theme-card" data-theme="Casual">
+            <h3>Casual</h3>
+            <p>Relaxed gathering with friends, easygoing vibes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="guest-title">
+      <div class="card-header">
+        <h2 id="guest-title">Guest list manager</h2>
+        <span class="pill">Step 3</span>
+      </div>
+      <div class="card-body">
+        <div class="inline-grid">
+          <div>
+            <label for="guest-name">Guest name</label>
+            <input id="guest-name" type="text" placeholder="Alex Morgan" />
+          </div>
+          <div>
+            <label for="guest-status">RSVP status</label>
+            <select id="guest-status">
+              <option value="Pending">Pending</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="button-row">
+          <button type="button" id="add-guest">Add guest</button>
+        </div>
+        <ul class="guest-list" id="guest-list"></ul>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="planner-title">
+      <div class="card-header">
+        <h2 id="planner-title">Drag-and-drop activity planner</h2>
+        <span class="pill">Step 4</span>
+      </div>
+      <div class="card-body">
+        <div class="drag-grid">
+          <div class="drag-panel" aria-label="Available activities">
+            <h3>Available activities</h3>
+            <div class="activity-options" id="activity-options"></div>
+          </div>
+          <div class="drag-panel" aria-label="Planned activities">
+            <h3>Planned schedule</h3>
+            <div class="activity-dropzone empty" id="activity-dropzone">
+              <p>Drag items here to build your event flow.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="summary-title">
+      <div class="card-header">
+        <h2 id="summary-title">Full event summary</h2>
+        <span class="pill">Final view</span>
+      </div>
+      <div class="card-body">
+        <div class="summary-grid">
+          <article class="summary-card">
+            <h3>Event details</h3>
+            <p id="summary-event-name" class="muted">No event created yet.</p>
+            <p id="summary-event-date"></p>
+            <p id="summary-event-location"></p>
+            <div class="tag-list" id="summary-theme-tags"></div>
+            <p id="summary-event-description"></p>
+          </article>
+          <article class="summary-card">
+            <h3>Guests</h3>
+            <ul class="summary-list" id="summary-guest-list"></ul>
+          </article>
+          <article class="summary-card">
+            <h3>Planned activities</h3>
+            <ul class="summary-list" id="summary-activity-list"></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      event: {
+        name: '',
+        date: '',
+        startTime: '',
+        endTime: '',
+        location: '',
+        description: '',
+        theme: 'Birthday',
+      },
+      guests: [],
+      activities: [
+        { id: 'games', title: 'Games', type: 'Entertainment', droppable: true, time: '' },
+        { id: 'break', title: 'Break Time', type: 'Rest', droppable: true, time: '' },
+        { id: 'food', title: 'Food Station', type: 'Food', droppable: true, time: '' },
+        { id: 'music', title: 'Music', type: 'Music', droppable: true, time: '' },
+        { id: 'photo', title: 'Photo Booth', type: 'Experience', droppable: true, time: '' },
+      ],
+      planned: [],
+      selectedTheme: 'Birthday',
+    };
+
+    const form = document.getElementById('event-form');
+    const saveEventButton = document.getElementById('save-event');
+    const resetEventButton = document.getElementById('reset-event');
+    const eventNameInput = document.getElementById('event-name');
+    const eventDateInput = document.getElementById('event-date');
+    const eventStartInput = document.getElementById('event-start');
+    const eventEndInput = document.getElementById('event-end');
+    const eventLocationInput = document.getElementById('event-location');
+    const eventDescriptionInput = document.getElementById('event-description');
+    const eventThemeSelect = document.getElementById('event-theme');
+    const themeOptions = document.getElementById('theme-options');
+    const guestNameInput = document.getElementById('guest-name');
+    const guestStatusSelect = document.getElementById('guest-status');
+    const addGuestButton = document.getElementById('add-guest');
+    const guestList = document.getElementById('guest-list');
+    const activityOptions = document.getElementById('activity-options');
+    const activityDropzone = document.getElementById('activity-dropzone');
+    const summaryEventName = document.getElementById('summary-event-name');
+    const summaryEventDate = document.getElementById('summary-event-date');
+    const summaryEventLocation = document.getElementById('summary-event-location');
+    const summaryEventDescription = document.getElementById('summary-event-description');
+    const summaryThemeTags = document.getElementById('summary-theme-tags');
+    const summaryGuestList = document.getElementById('summary-guest-list');
+    const summaryActivityList = document.getElementById('summary-activity-list');
+
+    function setDateRange() {
+      const today = new Date();
+      const minDate = today.toISOString().split('T')[0];
+      const maxDate = new Date(today.getFullYear() + 5, today.getMonth(), today.getDate()).toISOString().split('T')[0];
+      eventDateInput.min = minDate;
+      eventDateInput.max = maxDate;
+      if (eventDateInput.value && eventDateInput.value < minDate) {
+        eventDateInput.value = minDate;
+      }
+    }
+
+    function renderThemeOptions() {
+      themeOptions.querySelectorAll('.theme-card').forEach(card => {
+        const theme = card.dataset.theme;
+        const active = theme === state.selectedTheme;
+        card.classList.toggle('active', active);
+      });
+      eventThemeSelect.value = state.selectedTheme;
+      state.event.theme = state.selectedTheme;
+      updateSummary();
+    }
+
+    function renderGuestList() {
+      guestList.innerHTML = '';
+      if (!state.guests.length) {
+        guestList.innerHTML = '<li class="theme-item">No guests added yet.</li>';
+      }
+      state.guests.forEach((guest, index) => {
+        const li = document.createElement('li');
+        li.className = 'guest-item';
+        li.innerHTML = `
+          <div>
+            <strong>${guest.name}</strong>
+            <div class="status-pill ${guest.status === 'Yes' ? '' : guest.status === 'No' ? 'status-no' : 'status-pending'}">${guest.status}</div>
+          </div>
+          <div class="guest-actions">
+            <button type="button" data-action="toggle" data-index="${index}">${guest.status === 'Yes' ? 'Mark pending' : guest.status === 'Pending' ? 'Mark yes' : 'Mark yes'}</button>
+            <button type="button" data-action="remove" data-index="${index}" class="secondary">Remove</button>
+          </div>
+        `;
+        guestList.appendChild(li);
+      });
+      updateSummary();
+    }
+
+    function renderActivityOptions() {
+      activityOptions.innerHTML = '';
+      state.activities.filter(a => !state.planned.some(p => p.id === a.id)).forEach(activity => {
+        const card = document.createElement('article');
+        card.className = 'activity-card';
+        card.draggable = true;
+        card.dataset.id = activity.id;
+        card.innerHTML = `
+          <div>
+            <strong>${activity.title}</strong>
+          </div>
+          <div class="activity-card-meta">
+            <label for="activity-time-${activity.id}">When</label>
+            <input id="activity-time-${activity.id}" type="time" value="${activity.time || ''}" />
+          </div>
+          <button type="button" data-remove="${activity.id}" class="secondary">Remove</button>
+        `;
+
+        const timeInput = card.querySelector('input[type="time"]');
+        timeInput.addEventListener('change', event => {
+          const found = state.activities.find(a => a.id === activity.id);
+          if (found) found.time = event.target.value;
+        });
+
+        card.addEventListener('dragstart', () => card.classList.add('dragging'));
+        card.addEventListener('dragend', () => card.classList.remove('dragging'));
+        activityOptions.appendChild(card);
+      });
+    }
+
+    function renderPlannedActivities() {
+      activityDropzone.innerHTML = '';
+      if (!state.planned.length) {
+        activityDropzone.classList.add('empty');
+        activityDropzone.innerHTML = '<p>Drag items here to build your event flow.</p>';
+      } else {
+        activityDropzone.classList.remove('empty');
+        state.planned.forEach((activity, index) => {
+          const card = document.createElement('article');
+          card.className = 'activity-card moved';
+          card.innerHTML = `
+            <div>
+              <strong>${index + 1}. ${activity.title}</strong>
+              <div class="status-pill">${activity.time ? `At ${activity.time}` : 'No time set'}</div>
+            </div>
+            <button type="button" data-remove-planned="${activity.id}" class="secondary">Remove</button>
+          `;
+          activityDropzone.appendChild(card);
+        });
+      }
+      updateSummary();
+    }
+
+    function getDurationLabel(start, end) {
+      if (!start || !end) return 'Not set';
+      const [startH, startM] = start.split(':').map(Number);
+      const [endH, endM] = end.split(':').map(Number);
+      let minutes = (endH * 60 + endM) - (startH * 60 + startM);
+      if (minutes < 0) minutes += 24 * 60;
+      const hours = Math.floor(minutes / 60);
+      const mins = minutes % 60;
+      return `${hours}h ${mins.toString().padStart(2, '0')}m`;
+    }
+
+    function updateSummary() {
+      if (state.event.name) {
+        summaryEventName.textContent = state.event.name;
+        summaryEventDate.textContent = `Date: ${state.event.date || 'Not set'}`;
+        summaryEventLocation.textContent = `Location: ${state.event.location || 'Not set'}`;
+        summaryEventDescription.textContent = state.event.description || 'No description yet.';
+        const timeText = state.event.startTime && state.event.endTime ? `${state.event.startTime} - ${state.event.endTime}` : 'Not set';
+        summaryEventDate.textContent += ` • Time: ${timeText}`;
+      } else {
+        summaryEventName.textContent = 'No event created yet.';
+        summaryEventDate.textContent = '';
+        summaryEventLocation.textContent = '';
+        summaryEventDescription.textContent = '';
+      }
+
+      summaryThemeTags.innerHTML = '';
+      const themeTag = document.createElement('span');
+      themeTag.className = 'pill';
+      themeTag.textContent = state.event.theme;
+      summaryThemeTags.appendChild(themeTag);
+      if (state.event.startTime && state.event.endTime) {
+        const durationTag = document.createElement('span');
+        durationTag.className = 'pill';
+        durationTag.textContent = `Duration: ${getDurationLabel(state.event.startTime, state.event.endTime)}`;
+        summaryThemeTags.appendChild(durationTag);
+      }
+
+      summaryGuestList.innerHTML = '';
+      if (!state.guests.length) {
+        summaryGuestList.innerHTML = '<li class="summary-item">No guests yet.</li>';
+      } else {
+        state.guests.forEach(guest => {
+          const li = document.createElement('li');
+          li.className = 'summary-item';
+          li.innerHTML = `<strong>${guest.name}</strong> — ${guest.status}`;
+          summaryGuestList.appendChild(li);
+        });
+      }
+
+      summaryActivityList.innerHTML = '';
+      if (!state.planned.length) {
+        summaryActivityList.innerHTML = '<li class="summary-item">No activities planned.</li>';
+      } else {
+        state.planned.forEach((activity, index) => {
+          const li = document.createElement('li');
+          li.className = 'summary-item';
+          li.textContent = `${index + 1}. ${activity.title}`;
+          summaryActivityList.appendChild(li);
+        });
+      }
+    }
+
+    function saveEvent() {
+      state.event.name = eventNameInput.value.trim();
+      state.event.date = eventDateInput.value;
+      state.event.startTime = eventStartInput.value;
+      state.event.endTime = eventEndInput.value;
+      state.event.location = eventLocationInput.value.trim();
+      state.event.description = eventDescriptionInput.value.trim();
+      state.event.theme = eventThemeSelect.value;
+      if (!state.event.name || !state.event.date || !state.event.location || !state.event.startTime || !state.event.endTime) {
+        alert('Please fill in name, date, location, and event times.');
+        return;
+      }
+      const startMinutes = state.event.startTime.split(':').map(Number).reduce((a,b)=>a*60+b,0);
+      const endMinutes = state.event.endTime.split(':').map(Number).reduce((a,b)=>a*60+b,0);
+      if (startMinutes === endMinutes) {
+        alert('Start and end time cannot be the same.');
+        return;
+      }
+      state.selectedTheme = state.event.theme;
+      renderThemeOptions();
+      updateSummary();
+      alert('Event details saved.');
+    }
+
+    function resetEvent() {
+      form.reset();
+      state.event = { name: '', date: '', startTime: '', endTime: '', location: '', description: '', theme: 'Birthday' };
+      state.selectedTheme = 'Birthday';
+      eventThemeSelect.value = 'Birthday';
+      setDateRange();
+      renderThemeOptions();
+      updateSummary();
+    }
+
+    function addGuest() {
+      const name = guestNameInput.value.trim();
+      const status = guestStatusSelect.value;
+      if (!name) {
+        alert('Please enter a guest name.');
+        return;
+      }
+      state.guests.push({ name, status });
+      guestNameInput.value = '';
+      guestStatusSelect.value = 'Pending';
+      renderGuestList();
+    }
+
+    function removeGuest(index) {
+      state.guests.splice(index, 1);
+      renderGuestList();
+    }
+
+    function toggleGuest(index) {
+      const guest = state.guests[index];
+      if (!guest) return;
+      if (guest.status === 'Yes') guest.status = 'Pending';
+      else guest.status = 'Yes';
+      renderGuestList();
+    }
+
+    function removeActivity(id) {
+      state.activities = state.activities.filter(activity => activity.id !== id);
+      state.planned = state.planned.filter(activity => activity.id !== id);
+      renderActivityOptions();
+      renderPlannedActivities();
+    }
+
+    function removePlannedActivity(id) {
+      state.planned = state.planned.filter(activity => activity.id !== id);
+      renderActivityOptions();
+      renderPlannedActivities();
+    }
+
+    function handleDragStart(event) {
+      event.dataTransfer.setData('text/plain', event.currentTarget.dataset.id);
+      event.dataTransfer.effectAllowed = 'move';
+    }
+
+    function handleDragOver(event) {
+      event.preventDefault();
+      activityDropzone.classList.add('dragover');
+      event.dataTransfer.dropEffect = 'move';
+    }
+
+    function handleDragLeave() {
+      activityDropzone.classList.remove('dragover');
+    }
+
+    function handleDrop(event) {
+      event.preventDefault();
+      activityDropzone.classList.remove('dragover');
+      const id = event.dataTransfer.getData('text/plain');
+      const activity = state.activities.find(a => a.id === id);
+      if (activity && !state.planned.some(item => item.id === id)) {
+        state.planned.push(activity);
+        renderActivityOptions();
+        renderPlannedActivities();
+      }
+    }
+
+    themeOptions.addEventListener('click', event => {
+      const card = event.target.closest('.theme-card');
+      if (!card) return;
+      state.selectedTheme = card.dataset.theme;
+      renderThemeOptions();
+    });
+
+    saveEventButton.addEventListener('click', saveEvent);
+    resetEventButton.addEventListener('click', resetEvent);
+    addGuestButton.addEventListener('click', addGuest);
+
+    guestList.addEventListener('click', event => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      const index = Number(button.dataset.index);
+      if (button.dataset.action === 'remove') removeGuest(index);
+      if (button.dataset.action === 'toggle') toggleGuest(index);
+    });
+
+    activityOptions.addEventListener('click', event => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      const id = button.dataset.remove;
+      if (id) removeActivity(id);
+    });
+
+    activityDropzone.addEventListener('click', event => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      const id = button.dataset.removePlanned;
+      if (id) removePlannedActivity(id);
+    });
+
+    activityDropzone.addEventListener('dragover', handleDragOver);
+    activityDropzone.addEventListener('dragleave', handleDragLeave);
+    activityDropzone.addEventListener('drop', handleDrop);
+
+    function renderActivitiesWithDrag() {
+      renderActivityOptions();
+      renderPlannedActivities();
+      activityOptions.querySelectorAll('.activity-card').forEach(card => {
+        card.addEventListener('dragstart', handleDragStart);
+      });
+    }
+
+    eventThemeSelect.addEventListener('change', () => {
+      state.selectedTheme = eventThemeSelect.value;
+      renderThemeOptions();
+    });
+
+    resetEvent();
+    renderGuestList();
+    renderActivitiesWithDrag();
+    updateSummary();
+
+    const observer = new MutationObserver(() => {
+      activityOptions.querySelectorAll('.activity-card').forEach(card => {
+        if (!card.hasAttribute('data-drag-bound')) {
+          card.addEventListener('dragstart', handleDragStart);
+          card.setAttribute('data-drag-bound', 'true');
+        }
+      });
+    });
+    observer.observe(activityOptions, { childList: true });
+  </script>
+</body>
+</html>
