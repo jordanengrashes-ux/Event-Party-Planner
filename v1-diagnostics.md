@@ -60,3 +60,13 @@ and the 3 missing feature is adding themes, laist of people that you have invite
 
 my target user is party planers
 they will use it when they want a party
+they care an=bout time, people and things
+they get frustrated by using to much time figering out how to use it
+We are redesigning this for 10 + who want partys and birthday partys during their free time
+Our AI version works, but it is too hard the figure out how to suse it. We want to redesign it so that it feels eaier for people to use
+
+
+==============================================================================
+------------------------------------Constraints Card----------------------------------
+==============================================================================
+wy atarget age group is middle age, theyb will use it hwhen they need it , they will use ti for arud 20 min to 30 min THEY WILL; STOP WHEN THEY FIND A BETTER TOOL  OR THEY DONT WANT TO AHVE A PARETY ANYMORETHE TIME SPE

@@ -20,9 +20,7 @@
       font-family: Inter, system-ui, sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -83,9 +81,7 @@
       letter-spacing: -0.03em;
     }
 
-    .card-body {
-      padding: 1.5rem;
-    }
+    .card-body { padding: 1.5rem; }
 
     label {
       display: block;
@@ -94,16 +90,9 @@
       font-size: 0.95rem;
     }
 
-    input,
-    textarea,
-    select,
-    button {
-      font: inherit;
-    }
+    input, textarea, select, button { font: inherit; }
 
-    input,
-    textarea,
-    select {
+    input, textarea, select {
       width: 100%;
       border-radius: 0.85rem;
       border: 1px solid rgba(148, 163, 184, 0.16);
@@ -114,19 +103,14 @@
       transition: border-color 0.2s, transform 0.2s;
     }
 
-    input:focus,
-    textarea:focus,
-    select:focus {
+    input:focus, textarea:focus, select:focus {
       outline: none;
       border-color: var(--accent);
       transform: translateY(-1px);
       box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
     }
 
-    textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
+    textarea { resize: vertical; min-height: 100px; }
 
     .inline-grid {
       display: grid;
@@ -173,10 +157,7 @@
       margin: 0.25rem 0.25rem 0 0;
     }
 
-    .theme-list,
-    .guest-list,
-    .activity-list,
-    .summary-list {
+    .theme-list, .guest-list, .activity-list, .summary-list {
       list-style: none;
       padding: 0;
       margin: 0;
@@ -184,10 +165,7 @@
       gap: 0.75rem;
     }
 
-    .theme-item,
-    .guest-item,
-    .activity-item,
-    .summary-item {
+    .theme-item, .guest-item, .activity-item, .summary-item {
       background: var(--panel-alt);
       border: 1px solid rgba(148, 163, 184, 0.12);
       border-radius: 1rem;
@@ -196,9 +174,7 @@
       gap: 0.5rem;
     }
 
-    .theme-item button,
-    .guest-item button,
-    .activity-item button {
+    .theme-item button, .guest-item button, .activity-item button {
       width: fit-content;
       font-size: 0.85rem;
       background: rgba(71, 85, 105, 0.14);
@@ -209,10 +185,7 @@
       background: rgba(56, 189, 248, 0.08);
     }
 
-    .theme-item span {
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
+    .theme-item span { color: var(--muted); font-size: 0.85rem; }
 
     .theme-options {
       display: grid;
@@ -240,16 +213,8 @@
       border-color: rgba(56, 189, 248, 0.65);
     }
 
-    .theme-card h3 {
-      margin: 0 0 0.25rem;
-      font-size: 1rem;
-    }
-
-    .theme-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    .theme-card h3 { margin: 0 0 0.25rem; font-size: 1rem; }
+    .theme-card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
 
     .drag-grid {
       display: grid;
@@ -264,7 +229,7 @@
       padding: 1rem;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.75rem;
       background: rgba(15, 23, 42, 0.78);
     }
 
@@ -273,9 +238,25 @@
       background: rgba(56, 189, 248, 0.08);
     }
 
-    .drag-panel h3 {
-      margin: 0;
-      font-size: 1rem;
+    .drag-panel h3 { margin: 0; font-size: 1rem; }
+
+    .custom-activity-row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .custom-activity-row input {
+      margin-bottom: 0;
+      padding: 0.65rem 0.9rem;
+      flex: 1;
+    }
+
+    .custom-activity-row button {
+      padding: 0.65rem 0.95rem;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .activity-options {
@@ -288,7 +269,7 @@
 
     .activity-card {
       display: grid;
-      grid-template-columns: auto minmax(160px, 1fr) auto;
+      grid-template-columns: auto minmax(120px, 1fr) auto;
       align-items: center;
       gap: 0.75rem;
       padding: 0.85rem 0.95rem;
@@ -298,25 +279,15 @@
       cursor: grab;
     }
 
-    .activity-card.dragging {
-      opacity: 0.5;
-    }
-
-    .activity-card span {
-      font-size: 0.95rem;
-      min-width: 60px;
-    }
+    .activity-card.dragging { opacity: 0.5; }
+    .activity-card span { font-size: 0.95rem; min-width: 60px; }
 
     .activity-card-meta {
       display: grid;
       gap: 0.35rem;
-      min-width: 160px;
     }
 
-    .activity-card-meta label {
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
+    .activity-card-meta label { color: var(--muted); font-size: 0.78rem; }
 
     .activity-card-meta input {
       width: 100%;
@@ -324,21 +295,17 @@
       border: 1px solid rgba(148, 163, 184, 0.16);
       background: rgba(15, 23, 42, 0.88);
       color: var(--text);
-      padding: 0.65rem 0.8rem;
+      padding: 0.55rem 0.7rem;
+      margin-bottom: 0;
     }
 
     .activity-card button {
       margin-left: auto;
       border-radius: 999px;
-      padding: 0.55rem 0.75rem;
+      padding: 0.5rem 0.7rem;
       background: rgba(239, 68, 68, 0.14);
       color: #fecaca;
-    }
-
-    .activity-destination {
-      display: grid;
-      gap: 0.75rem;
-      flex: 1;
+      font-size: 0.8rem;
     }
 
     .activity-dropzone {
@@ -351,25 +318,17 @@
       overflow: auto;
       display: grid;
       gap: 0.75rem;
+      align-content: start;
     }
 
-    .activity-dropzone.empty {
-      color: var(--muted);
-    }
+    .activity-dropzone.empty { color: var(--muted); }
+    .activity-card.moved { cursor: default; }
 
-    .activity-card.moved {
-      cursor: default;
-    }
-
-    .guest-actions {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
+    .guest-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
     .guest-item {
       grid-template-columns: minmax(0, 1fr) auto;
-      align-items: center;
+      align-items: start;
     }
 
     .status-pill {
@@ -379,24 +338,15 @@
       background: rgba(16, 185, 129, 0.12);
       color: #a7f3d0;
       border-radius: 999px;
-      padding: 0.35rem 0.65rem;
-      font-size: 0.85rem;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.82rem;
+      margin-left: 0.4rem;
     }
 
-    .status-pending {
-      background: rgba(245, 158, 11, 0.12);
-      color: #fcd34d;
-    }
+    .status-pending { background: rgba(245, 158, 11, 0.12); color: #fcd34d; }
+    .status-no { background: rgba(239, 68, 68, 0.12); color: #fecaca; }
 
-    .status-no {
-      background: rgba(239, 68, 68, 0.12);
-      color: #fecaca;
-    }
-
-    .summary-grid {
-      display: grid;
-      gap: 1rem;
-    }
+    .summary-grid { display: grid; gap: 1rem; }
 
     .summary-card {
       background: rgba(31, 41, 55, 0.9);
@@ -405,39 +355,264 @@
       padding: 1rem;
     }
 
-    .summary-card h3 {
+    .summary-card h3 { margin: 0 0 0.75rem; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+
+    /* --- New feature styles --- */
+
+    .full-width { grid-column: 1 / -1; }
+
+    .allergy-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.35rem;
+    }
+
+    .allergy-tag {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fcd34d;
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.78rem;
+    }
+
+    .dislike-tag {
+      background: rgba(148, 163, 184, 0.1);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.78rem;
+    }
+
+    /* Budget */
+    .budget-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .budget-stat {
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+      border-radius: 0.85rem;
+      padding: 0.85rem;
+      text-align: center;
+    }
+
+    .budget-stat .amount {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .budget-stat .label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .budget-stat.over .amount { color: var(--danger); }
+
+    .budget-bar-wrap {
+      background: rgba(15, 23, 42, 0.88);
+      border-radius: 999px;
+      height: 8px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .budget-bar {
+      height: 100%;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .budget-bar.over { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+    .expense-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .expense-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+      border-radius: 0.85rem;
+      padding: 0.75rem 1rem;
+      gap: 0.75rem;
+    }
+
+    .expense-amount { color: var(--accent); font-weight: 600; }
+
+    /* Food planner */
+    .food-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .food-item {
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+      border-radius: 0.85rem;
+      padding: 0.75rem 1rem;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .food-item.conflict {
+      border-color: rgba(239, 68, 68, 0.4);
+      background: rgba(239, 68, 68, 0.05);
+    }
+
+    .food-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .conflict-badge {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fecaca;
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.78rem;
+    }
+
+    .safe-badge {
+      background: rgba(34, 197, 94, 0.15);
+      color: #a7f3d0;
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.78rem;
+    }
+
+    /* Lobby */
+    .lobby-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 1.5rem;
+    }
+
+    .invite-preview {
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: var(--muted);
+      white-space: pre-wrap;
+      min-height: 200px;
+    }
+
+    .lobby-panel-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--muted);
       margin: 0 0 0.75rem;
     }
 
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+    .copy-success {
+      display: inline-block;
+      color: var(--success);
+      font-size: 0.88rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      margin-left: 0.5rem;
+    }
+
+    .copy-success.show { opacity: 1; }
+
+    .friend-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+
+    /* Per-guest messages */
+    .messages-list {
+      display: grid;
+      gap: 0.85rem;
       margin-top: 0.5rem;
     }
 
+    .message-card {
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1rem;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .message-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .message-card textarea {
+      margin-bottom: 0;
+      min-height: 70px;
+      font-size: 0.9rem;
+    }
+
+    .message-copy-btn {
+      padding: 0.5rem 0.9rem;
+      font-size: 0.82rem;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .message-copy-btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .msg-copy-tick {
+      color: var(--success);
+      font-size: 0.82rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .msg-copy-tick.show { opacity: 1; }
+
     @media (max-width: 980px) {
-      main {
-        grid-template-columns: 1fr;
-      }
+      main { grid-template-columns: 1fr; }
+      .lobby-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 680px) {
-      .inline-grid,
-      .theme-options,
-      .drag-grid {
-        grid-template-columns: 1fr;
-      }
+      .inline-grid, .theme-options, .drag-grid, .budget-stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Event & Party Planner</h1>
-    <p class="lead">Design your next celebration with a full event builder, themed party options, guest RSVP management, and a drag-and-drop activity planner—all in one single page.</p>
+    <p class="lead">Plan your perfect party — build a custom schedule, set a budget, plan food around guest allergies, and share your invite with friends.</p>
   </header>
 
   <main>
+    <!-- Step 1: Event Details -->
     <section class="card" aria-labelledby="event-title">
       <div class="card-header">
         <h2 id="event-title">Create your event</h2>
@@ -485,8 +660,8 @@
             </div>
           </div>
 
-          <label for="event-description">Description</label>
-          <textarea id="event-description" placeholder="Add a few details about the celebration..."></textarea>
+          <label for="event-description">Event description</label>
+          <textarea id="event-description" placeholder="Tell your friends what to expect, what to bring, dress code, and any other details..."></textarea>
 
           <div class="button-row">
             <button type="button" id="save-event">Save event details</button>
@@ -496,6 +671,7 @@
       </div>
     </section>
 
+    <!-- Step 2: Theme -->
     <section class="card" aria-labelledby="theme-title">
       <div class="card-header">
         <h2 id="theme-title">Party theme options</h2>
@@ -504,36 +680,37 @@
       <div class="card-body">
         <div class="theme-options" id="theme-options">
           <article class="theme-card active" data-theme="Birthday">
-            <h3>Birthday</h3>
+            <h3>🎂 Birthday</h3>
             <p>Bright balloons, cake, and cheerful decorations.</p>
           </article>
           <article class="theme-card" data-theme="Holiday">
-            <h3>Holiday</h3>
+            <h3>🎄 Holiday</h3>
             <p>Festive lights, seasonal accents, and cozy spirit.</p>
           </article>
           <article class="theme-card" data-theme="Costume">
-            <h3>Costume</h3>
+            <h3>🎭 Costume</h3>
             <p>Dress-up fun, themed contests, and playful flair.</p>
           </article>
           <article class="theme-card" data-theme="Sports">
-            <h3>Sports</h3>
+            <h3>🏆 Sports</h3>
             <p>Team games, jerseys, and competitive energy.</p>
           </article>
           <article class="theme-card" data-theme="Formal">
-            <h3>Formal</h3>
+            <h3>🥂 Formal</h3>
             <p>Elegant evening, refined details, and polished style.</p>
           </article>
           <article class="theme-card" data-theme="Casual">
-            <h3>Casual</h3>
+            <h3>😎 Casual</h3>
             <p>Relaxed gathering with friends, easygoing vibes.</p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- Step 3: Guest List -->
     <section class="card" aria-labelledby="guest-title">
       <div class="card-header">
-        <h2 id="guest-title">Guest list manager</h2>
+        <h2 id="guest-title">Guest list</h2>
         <span class="pill">Step 3</span>
       </div>
       <div class="card-body">
@@ -551,6 +728,16 @@
             </select>
           </div>
         </div>
+        <div class="inline-grid">
+          <div>
+            <label for="guest-allergies">Allergies (comma-separated)</label>
+            <input id="guest-allergies" type="text" placeholder="nuts, dairy, gluten" />
+          </div>
+          <div>
+            <label for="guest-dislikes">Dislikes (comma-separated)</label>
+            <input id="guest-dislikes" type="text" placeholder="spicy food, mushrooms" />
+          </div>
+        </div>
         <div class="button-row">
           <button type="button" id="add-guest">Add guest</button>
         </div>
@@ -558,37 +745,118 @@
       </div>
     </section>
 
+    <!-- Step 4: Activity & Time Planner -->
     <section class="card" aria-labelledby="planner-title">
       <div class="card-header">
-        <h2 id="planner-title">Drag-and-drop activity planner</h2>
+        <h2 id="planner-title">Activity &amp; time planner</h2>
         <span class="pill">Step 4</span>
       </div>
       <div class="card-body">
         <div class="drag-grid">
           <div class="drag-panel" aria-label="Available activities">
             <h3>Available activities</h3>
+            <div class="custom-activity-row">
+              <input id="custom-activity-name" type="text" placeholder="Write your own activity..." />
+              <button type="button" id="add-custom-activity">+ Add</button>
+            </div>
             <div class="activity-options" id="activity-options"></div>
           </div>
-          <div class="drag-panel" aria-label="Planned activities">
+          <div class="drag-panel" aria-label="Planned schedule">
             <h3>Planned schedule</h3>
             <div class="activity-dropzone empty" id="activity-dropzone">
-              <p>Drag items here to build your event flow.</p>
+              <p>Drag activities here to build your event flow.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Step 5: Budget Planner -->
+    <section class="card" aria-labelledby="budget-title">
+      <div class="card-header">
+        <h2 id="budget-title">Budget planner</h2>
+        <span class="pill">Step 5</span>
+      </div>
+      <div class="card-body">
+        <div class="inline-grid">
+          <div>
+            <label for="budget-total">Total budget ($)</label>
+            <input id="budget-total" type="number" min="0" step="0.01" placeholder="500.00" />
+          </div>
+          <div style="display:flex;align-items:flex-end;padding-bottom:1rem;">
+            <button type="button" id="set-budget" style="width:100%">Set budget</button>
+          </div>
+        </div>
+        <div class="budget-stats">
+          <div class="budget-stat">
+            <div class="amount" id="budget-total-display">$0.00</div>
+            <div class="label">Total budget</div>
+          </div>
+          <div class="budget-stat">
+            <div class="amount" id="budget-spent-display">$0.00</div>
+            <div class="label">Spent</div>
+          </div>
+          <div class="budget-stat" id="budget-remaining-stat">
+            <div class="amount" id="budget-remaining-display">$0.00</div>
+            <div class="label">Remaining</div>
+          </div>
+        </div>
+        <div class="budget-bar-wrap">
+          <div class="budget-bar" id="budget-bar" style="width:0%"></div>
+        </div>
+        <div class="inline-grid">
+          <div>
+            <label for="expense-name">Expense name</label>
+            <input id="expense-name" type="text" placeholder="Decorations" />
+          </div>
+          <div>
+            <label for="expense-cost">Cost ($)</label>
+            <input id="expense-cost" type="number" min="0" step="0.01" placeholder="45.00" />
+          </div>
+        </div>
+        <div class="button-row">
+          <button type="button" id="add-expense">Add expense</button>
+        </div>
+        <ul class="expense-list" id="expense-list"></ul>
+      </div>
+    </section>
+
+    <!-- Step 6: Food Planner -->
+    <section class="card" aria-labelledby="food-title">
+      <div class="card-header">
+        <h2 id="food-title">Food planner</h2>
+        <span class="pill">Step 6</span>
+      </div>
+      <div class="card-body">
+        <p style="color:var(--muted);margin:0 0 1rem;font-size:0.9rem;">Add food and flag allergens — the planner warns you when a guest has a matching allergy.</p>
+        <div class="inline-grid">
+          <div>
+            <label for="food-name">Food item</label>
+            <input id="food-name" type="text" placeholder="Peanut butter cookies" />
+          </div>
+          <div>
+            <label for="food-allergens">Contains allergens (comma-separated)</label>
+            <input id="food-allergens" type="text" placeholder="nuts, gluten" />
+          </div>
+        </div>
+        <div class="button-row">
+          <button type="button" id="add-food">Add food item</button>
+        </div>
+        <ul class="food-list" id="food-list"></ul>
+      </div>
+    </section>
+
+    <!-- Summary -->
     <section class="card" aria-labelledby="summary-title">
       <div class="card-header">
         <h2 id="summary-title">Full event summary</h2>
-        <span class="pill">Final view</span>
+        <span class="pill">Review</span>
       </div>
       <div class="card-body">
         <div class="summary-grid">
           <article class="summary-card">
             <h3>Event details</h3>
-            <p id="summary-event-name" class="muted">No event created yet.</p>
+            <p id="summary-event-name" style="color:var(--muted)">No event created yet.</p>
             <p id="summary-event-date"></p>
             <p id="summary-event-location"></p>
             <div class="tag-list" id="summary-theme-tags"></div>
@@ -599,9 +867,48 @@
             <ul class="summary-list" id="summary-guest-list"></ul>
           </article>
           <article class="summary-card">
-            <h3>Planned activities</h3>
+            <h3>Schedule</h3>
             <ul class="summary-list" id="summary-activity-list"></ul>
           </article>
+          <article class="summary-card">
+            <h3>Budget</h3>
+            <p id="summary-budget" style="color:var(--muted)">No budget set.</p>
+          </article>
+          <article class="summary-card">
+            <h3>Food plan</h3>
+            <ul class="summary-list" id="summary-food-list"></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Party Lobby (full width) -->
+    <section class="card full-width" aria-labelledby="lobby-title">
+      <div class="card-header">
+        <h2 id="lobby-title">🎉 Party lobby — share your event</h2>
+        <span class="pill">Share</span>
+      </div>
+      <div class="card-body">
+        <div class="lobby-grid">
+          <div>
+            <p class="lobby-panel-title">General invite preview</p>
+            <div class="invite-preview" id="invite-preview">Save your event details to generate an invite.</div>
+            <div class="button-row" style="margin-top:1rem;">
+              <button type="button" id="copy-invite">Copy general invite</button>
+              <span class="copy-success" id="copy-success">Copied!</span>
+            </div>
+            <div style="margin-top:1rem;">
+              <label for="lobby-note">General note (added to all invites)</label>
+              <textarea id="lobby-note" placeholder="Can't wait to see everyone! Bring your best vibes..." style="min-height:70px"></textarea>
+            </div>
+          </div>
+          <div>
+            <p class="lobby-panel-title">Personal messages for each guest</p>
+            <p style="color:var(--muted);font-size:0.88rem;margin:0 0 0.75rem">Write a personal message for each invited guest. Use the copy button to send them the full invite + their message.</p>
+            <div class="messages-list" id="messages-list">
+              <p style="color:var(--muted);font-size:0.9rem">Add guests to write them personal messages.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -609,257 +916,167 @@
 
   <script>
     const state = {
-      event: {
-        name: '',
-        date: '',
-        startTime: '',
-        endTime: '',
-        location: '',
-        description: '',
-        theme: 'Birthday',
-      },
+      event: { name: '', date: '', startTime: '', endTime: '', location: '', description: '', theme: 'Birthday' },
       guests: [],
       activities: [
-        { id: 'games', title: 'Games', type: 'Entertainment', droppable: true, time: '' },
-        { id: 'break', title: 'Break Time', type: 'Rest', droppable: true, time: '' },
-        { id: 'food', title: 'Food Station', type: 'Food', droppable: true, time: '' },
-        { id: 'music', title: 'Music', type: 'Music', droppable: true, time: '' },
-        { id: 'photo', title: 'Photo Booth', type: 'Experience', droppable: true, time: '' },
+        { id: 'games',    title: 'Games',          emoji: '🎮', time: '' },
+        { id: 'break',    title: 'Break Time',     emoji: '☕', time: '' },
+        { id: 'food',     title: 'Food Station',   emoji: '🍽', time: '' },
+        { id: 'music',    title: 'Music',          emoji: '🎵', time: '' },
+        { id: 'photo',    title: 'Photo Booth',    emoji: '📸', time: '' },
+        { id: 'karaoke',  title: 'Karaoke',        emoji: '🎤', time: '' },
+        { id: 'dance',    title: 'Dance Floor',    emoji: '💃', time: '' },
+        { id: 'trivia',   title: 'Trivia / Quiz',  emoji: '🧠', time: '' },
+        { id: 'movie',    title: 'Movie Screening',emoji: '🎬', time: '' },
+        { id: 'bbq',      title: 'BBQ & Grill',    emoji: '🔥', time: '' },
+        { id: 'cake',     title: 'Cake Cutting',   emoji: '🎂', time: '' },
+        { id: 'gifts',    title: 'Gift Opening',   emoji: '🎁', time: '' },
+        { id: 'toast',    title: 'Welcome Toast',  emoji: '🥂', time: '' },
+        { id: 'bonfire',  title: 'Bonfire',        emoji: '🪵', time: '' },
+        { id: 'outdoor',  title: 'Outdoor Games',  emoji: '🏐', time: '' },
       ],
       planned: [],
       selectedTheme: 'Birthday',
+      budget: { total: 0, items: [] },
+      food: [],
     };
 
-    const form = document.getElementById('event-form');
-    const saveEventButton = document.getElementById('save-event');
-    const resetEventButton = document.getElementById('reset-event');
-    const eventNameInput = document.getElementById('event-name');
-    const eventDateInput = document.getElementById('event-date');
-    const eventStartInput = document.getElementById('event-start');
-    const eventEndInput = document.getElementById('event-end');
-    const eventLocationInput = document.getElementById('event-location');
-    const eventDescriptionInput = document.getElementById('event-description');
-    const eventThemeSelect = document.getElementById('event-theme');
-    const themeOptions = document.getElementById('theme-options');
-    const guestNameInput = document.getElementById('guest-name');
-    const guestStatusSelect = document.getElementById('guest-status');
-    const addGuestButton = document.getElementById('add-guest');
-    const guestList = document.getElementById('guest-list');
-    const activityOptions = document.getElementById('activity-options');
-    const activityDropzone = document.getElementById('activity-dropzone');
-    const summaryEventName = document.getElementById('summary-event-name');
-    const summaryEventDate = document.getElementById('summary-event-date');
-    const summaryEventLocation = document.getElementById('summary-event-location');
+    // DOM refs
+    const form                    = document.getElementById('event-form');
+    const saveEventButton         = document.getElementById('save-event');
+    const resetEventButton        = document.getElementById('reset-event');
+    const eventNameInput          = document.getElementById('event-name');
+    const eventDateInput          = document.getElementById('event-date');
+    const eventStartInput         = document.getElementById('event-start');
+    const eventEndInput           = document.getElementById('event-end');
+    const eventLocationInput      = document.getElementById('event-location');
+    const eventDescriptionInput   = document.getElementById('event-description');
+    const eventThemeSelect        = document.getElementById('event-theme');
+    const themeOptions            = document.getElementById('theme-options');
+    const guestNameInput          = document.getElementById('guest-name');
+    const guestStatusSelect       = document.getElementById('guest-status');
+    const guestAllergiesInput     = document.getElementById('guest-allergies');
+    const guestDislikesInput      = document.getElementById('guest-dislikes');
+    const addGuestButton          = document.getElementById('add-guest');
+    const guestList               = document.getElementById('guest-list');
+    const customActivityNameInput = document.getElementById('custom-activity-name');
+    const addCustomActivityButton = document.getElementById('add-custom-activity');
+    const activityOptions         = document.getElementById('activity-options');
+    const activityDropzone        = document.getElementById('activity-dropzone');
+    const budgetTotalInput        = document.getElementById('budget-total');
+    const setBudgetButton         = document.getElementById('set-budget');
+    const budgetTotalDisplay      = document.getElementById('budget-total-display');
+    const budgetSpentDisplay      = document.getElementById('budget-spent-display');
+    const budgetRemainingDisplay  = document.getElementById('budget-remaining-display');
+    const budgetRemainingStat     = document.getElementById('budget-remaining-stat');
+    const budgetBar               = document.getElementById('budget-bar');
+    const expenseNameInput        = document.getElementById('expense-name');
+    const expenseCostInput        = document.getElementById('expense-cost');
+    const addExpenseButton        = document.getElementById('add-expense');
+    const expenseList             = document.getElementById('expense-list');
+    const foodNameInput           = document.getElementById('food-name');
+    const foodAllergensInput      = document.getElementById('food-allergens');
+    const addFoodButton           = document.getElementById('add-food');
+    const foodList                = document.getElementById('food-list');
+    const summaryEventName        = document.getElementById('summary-event-name');
+    const summaryEventDate        = document.getElementById('summary-event-date');
+    const summaryEventLocation    = document.getElementById('summary-event-location');
     const summaryEventDescription = document.getElementById('summary-event-description');
-    const summaryThemeTags = document.getElementById('summary-theme-tags');
-    const summaryGuestList = document.getElementById('summary-guest-list');
-    const summaryActivityList = document.getElementById('summary-activity-list');
+    const summaryThemeTags        = document.getElementById('summary-theme-tags');
+    const summaryGuestList        = document.getElementById('summary-guest-list');
+    const summaryActivityList     = document.getElementById('summary-activity-list');
+    const summaryBudget           = document.getElementById('summary-budget');
+    const summaryFoodList         = document.getElementById('summary-food-list');
+    const invitePreview           = document.getElementById('invite-preview');
+    const friendTags              = document.getElementById('friend-tags');
+    const copyInviteButton        = document.getElementById('copy-invite');
+    const copySuccess             = document.getElementById('copy-success');
+    const lobbyNote               = document.getElementById('lobby-note');
 
+    // Helpers
     function setDateRange() {
       const today = new Date();
       const minDate = today.toISOString().split('T')[0];
       const maxDate = new Date(today.getFullYear() + 5, today.getMonth(), today.getDate()).toISOString().split('T')[0];
       eventDateInput.min = minDate;
       eventDateInput.max = maxDate;
-      if (eventDateInput.value && eventDateInput.value < minDate) {
-        eventDateInput.value = minDate;
-      }
     }
 
+    function getDurationLabel(start, end) {
+      if (!start || !end) return 'Not set';
+      const [sh, sm] = start.split(':').map(Number);
+      const [eh, em] = end.split(':').map(Number);
+      let mins = (eh * 60 + em) - (sh * 60 + sm);
+      if (mins < 0) mins += 1440;
+      return `${Math.floor(mins / 60)}h ${String(mins % 60).padStart(2, '0')}m`;
+    }
+
+    function parseList(str) {
+      return str.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+    }
+
+    function fmt(n) {
+      return '$' + Number(n).toFixed(2);
+    }
+
+    // Theme
     function renderThemeOptions() {
       themeOptions.querySelectorAll('.theme-card').forEach(card => {
-        const theme = card.dataset.theme;
-        const active = theme === state.selectedTheme;
-        card.classList.toggle('active', active);
+        card.classList.toggle('active', card.dataset.theme === state.selectedTheme);
       });
       eventThemeSelect.value = state.selectedTheme;
       state.event.theme = state.selectedTheme;
       updateSummary();
     }
 
+    // Guests
     function renderGuestList() {
       guestList.innerHTML = '';
       if (!state.guests.length) {
         guestList.innerHTML = '<li class="theme-item">No guests added yet.</li>';
-      }
-      state.guests.forEach((guest, index) => {
-        const li = document.createElement('li');
-        li.className = 'guest-item';
-        li.innerHTML = `
-          <div>
-            <strong>${guest.name}</strong>
-            <div class="status-pill ${guest.status === 'Yes' ? '' : guest.status === 'No' ? 'status-no' : 'status-pending'}">${guest.status}</div>
-          </div>
-          <div class="guest-actions">
-            <button type="button" data-action="toggle" data-index="${index}">${guest.status === 'Yes' ? 'Mark pending' : guest.status === 'Pending' ? 'Mark yes' : 'Mark yes'}</button>
-            <button type="button" data-action="remove" data-index="${index}" class="secondary">Remove</button>
-          </div>
-        `;
-        guestList.appendChild(li);
-      });
-      updateSummary();
-    }
-
-    function renderActivityOptions() {
-      activityOptions.innerHTML = '';
-      state.activities.filter(a => !state.planned.some(p => p.id === a.id)).forEach(activity => {
-        const card = document.createElement('article');
-        card.className = 'activity-card';
-        card.draggable = true;
-        card.dataset.id = activity.id;
-        card.innerHTML = `
-          <div>
-            <strong>${activity.title}</strong>
-          </div>
-          <div class="activity-card-meta">
-            <label for="activity-time-${activity.id}">When</label>
-            <input id="activity-time-${activity.id}" type="time" value="${activity.time || ''}" />
-          </div>
-          <button type="button" data-remove="${activity.id}" class="secondary">Remove</button>
-        `;
-
-        const timeInput = card.querySelector('input[type="time"]');
-        timeInput.addEventListener('change', event => {
-          const found = state.activities.find(a => a.id === activity.id);
-          if (found) found.time = event.target.value;
-        });
-
-        card.addEventListener('dragstart', () => card.classList.add('dragging'));
-        card.addEventListener('dragend', () => card.classList.remove('dragging'));
-        activityOptions.appendChild(card);
-      });
-    }
-
-    function renderPlannedActivities() {
-      activityDropzone.innerHTML = '';
-      if (!state.planned.length) {
-        activityDropzone.classList.add('empty');
-        activityDropzone.innerHTML = '<p>Drag items here to build your event flow.</p>';
       } else {
-        activityDropzone.classList.remove('empty');
-        state.planned.forEach((activity, index) => {
-          const card = document.createElement('article');
-          card.className = 'activity-card moved';
-          card.innerHTML = `
+        state.guests.forEach((guest, index) => {
+          const li = document.createElement('li');
+          li.className = 'guest-item';
+          const allergyHTML = guest.allergies.length
+            ? `<div class="allergy-row">${guest.allergies.map(a => `<span class="allergy-tag">⚠ ${a}</span>`).join('')}</div>`
+            : '';
+          const dislikeHTML = guest.dislikes.length
+            ? `<div class="allergy-row">${guest.dislikes.map(d => `<span class="dislike-tag">✗ ${d}</span>`).join('')}</div>`
+            : '';
+          li.innerHTML = `
             <div>
-              <strong>${index + 1}. ${activity.title}</strong>
-              <div class="status-pill">${activity.time ? `At ${activity.time}` : 'No time set'}</div>
+              <strong>${guest.name}</strong>
+              <span class="status-pill ${guest.status === 'Yes' ? '' : guest.status === 'No' ? 'status-no' : 'status-pending'}">${guest.status}</span>
+              ${allergyHTML}${dislikeHTML}
             </div>
-            <button type="button" data-remove-planned="${activity.id}" class="secondary">Remove</button>
+            <div class="guest-actions">
+              <button type="button" data-action="toggle" data-index="${index}">${guest.status === 'Yes' ? 'Mark pending' : 'Mark yes'}</button>
+              <button type="button" data-action="remove" data-index="${index}" class="secondary">Remove</button>
+            </div>
           `;
-          activityDropzone.appendChild(card);
+          guestList.appendChild(li);
         });
       }
-      updateSummary();
-    }
-
-    function getDurationLabel(start, end) {
-      if (!start || !end) return 'Not set';
-      const [startH, startM] = start.split(':').map(Number);
-      const [endH, endM] = end.split(':').map(Number);
-      let minutes = (endH * 60 + endM) - (startH * 60 + startM);
-      if (minutes < 0) minutes += 24 * 60;
-      const hours = Math.floor(minutes / 60);
-      const mins = minutes % 60;
-      return `${hours}h ${mins.toString().padStart(2, '0')}m`;
-    }
-
-    function updateSummary() {
-      if (state.event.name) {
-        summaryEventName.textContent = state.event.name;
-        summaryEventDate.textContent = `Date: ${state.event.date || 'Not set'}`;
-        summaryEventLocation.textContent = `Location: ${state.event.location || 'Not set'}`;
-        summaryEventDescription.textContent = state.event.description || 'No description yet.';
-        const timeText = state.event.startTime && state.event.endTime ? `${state.event.startTime} - ${state.event.endTime}` : 'Not set';
-        summaryEventDate.textContent += ` • Time: ${timeText}`;
-      } else {
-        summaryEventName.textContent = 'No event created yet.';
-        summaryEventDate.textContent = '';
-        summaryEventLocation.textContent = '';
-        summaryEventDescription.textContent = '';
-      }
-
-      summaryThemeTags.innerHTML = '';
-      const themeTag = document.createElement('span');
-      themeTag.className = 'pill';
-      themeTag.textContent = state.event.theme;
-      summaryThemeTags.appendChild(themeTag);
-      if (state.event.startTime && state.event.endTime) {
-        const durationTag = document.createElement('span');
-        durationTag.className = 'pill';
-        durationTag.textContent = `Duration: ${getDurationLabel(state.event.startTime, state.event.endTime)}`;
-        summaryThemeTags.appendChild(durationTag);
-      }
-
-      summaryGuestList.innerHTML = '';
-      if (!state.guests.length) {
-        summaryGuestList.innerHTML = '<li class="summary-item">No guests yet.</li>';
-      } else {
-        state.guests.forEach(guest => {
-          const li = document.createElement('li');
-          li.className = 'summary-item';
-          li.innerHTML = `<strong>${guest.name}</strong> — ${guest.status}`;
-          summaryGuestList.appendChild(li);
-        });
-      }
-
-      summaryActivityList.innerHTML = '';
-      if (!state.planned.length) {
-        summaryActivityList.innerHTML = '<li class="summary-item">No activities planned.</li>';
-      } else {
-        state.planned.forEach((activity, index) => {
-          const li = document.createElement('li');
-          li.className = 'summary-item';
-          li.textContent = `${index + 1}. ${activity.title}`;
-          summaryActivityList.appendChild(li);
-        });
-      }
-    }
-
-    function saveEvent() {
-      state.event.name = eventNameInput.value.trim();
-      state.event.date = eventDateInput.value;
-      state.event.startTime = eventStartInput.value;
-      state.event.endTime = eventEndInput.value;
-      state.event.location = eventLocationInput.value.trim();
-      state.event.description = eventDescriptionInput.value.trim();
-      state.event.theme = eventThemeSelect.value;
-      if (!state.event.name || !state.event.date || !state.event.location || !state.event.startTime || !state.event.endTime) {
-        alert('Please fill in name, date, location, and event times.');
-        return;
-      }
-      const startMinutes = state.event.startTime.split(':').map(Number).reduce((a,b)=>a*60+b,0);
-      const endMinutes = state.event.endTime.split(':').map(Number).reduce((a,b)=>a*60+b,0);
-      if (startMinutes === endMinutes) {
-        alert('Start and end time cannot be the same.');
-        return;
-      }
-      state.selectedTheme = state.event.theme;
-      renderThemeOptions();
-      updateSummary();
-      alert('Event details saved.');
-    }
-
-    function resetEvent() {
-      form.reset();
-      state.event = { name: '', date: '', startTime: '', endTime: '', location: '', description: '', theme: 'Birthday' };
-      state.selectedTheme = 'Birthday';
-      eventThemeSelect.value = 'Birthday';
-      setDateRange();
-      renderThemeOptions();
+      renderFood();
+      renderLobby();
       updateSummary();
     }
 
     function addGuest() {
       const name = guestNameInput.value.trim();
-      const status = guestStatusSelect.value;
-      if (!name) {
-        alert('Please enter a guest name.');
-        return;
-      }
-      state.guests.push({ name, status });
+      if (!name) { alert('Please enter a guest name.'); return; }
+      state.guests.push({
+        name,
+        status: guestStatusSelect.value,
+        allergies: parseList(guestAllergiesInput.value),
+        dislikes: parseList(guestDislikesInput.value),
+        message: '',
+      });
       guestNameInput.value = '';
       guestStatusSelect.value = 'Pending';
+      guestAllergiesInput.value = '';
+      guestDislikesInput.value = '';
       renderGuestList();
     }
 
@@ -869,27 +1086,91 @@
     }
 
     function toggleGuest(index) {
-      const guest = state.guests[index];
-      if (!guest) return;
-      if (guest.status === 'Yes') guest.status = 'Pending';
-      else guest.status = 'Yes';
+      const g = state.guests[index];
+      if (!g) return;
+      g.status = g.status === 'Yes' ? 'Pending' : 'Yes';
       renderGuestList();
     }
 
+    // Activities
+    function renderActivityOptions() {
+      activityOptions.innerHTML = '';
+      const available = state.activities.filter(a => !state.planned.some(p => p.id === a.id));
+      if (!available.length) {
+        activityOptions.innerHTML = '<p style="color:var(--muted);font-size:0.9rem;">All activities scheduled!</p>';
+        return;
+      }
+      available.forEach(activity => {
+        const card = document.createElement('article');
+        card.className = 'activity-card';
+        card.draggable = true;
+        card.dataset.id = activity.id;
+        card.innerHTML = `
+          <div><strong>${activity.emoji || '•'} ${activity.title}</strong></div>
+          <div class="activity-card-meta">
+            <label for="at-${activity.id}">Time</label>
+            <input id="at-${activity.id}" type="time" value="${activity.time || ''}" />
+          </div>
+          <button type="button" data-remove="${activity.id}">✕</button>
+        `;
+        card.querySelector('input[type="time"]').addEventListener('change', e => {
+          const found = state.activities.find(a => a.id === activity.id);
+          if (found) found.time = e.target.value;
+        });
+        card.addEventListener('dragstart', handleDragStart);
+        card.addEventListener('dragend', () => card.classList.remove('dragging'));
+        activityOptions.appendChild(card);
+      });
+    }
+
+    function renderPlannedActivities() {
+      activityDropzone.innerHTML = '';
+      if (!state.planned.length) {
+        activityDropzone.classList.add('empty');
+        activityDropzone.innerHTML = '<p>Drag activities here to build your event flow.</p>';
+      } else {
+        activityDropzone.classList.remove('empty');
+        state.planned.forEach((activity, index) => {
+          const card = document.createElement('article');
+          card.className = 'activity-card moved';
+          card.innerHTML = `
+            <div>
+              <strong>${activity.emoji || '•'} ${index + 1}. ${activity.title}</strong>
+              <div class="status-pill">${activity.time ? `at ${activity.time}` : 'No time set'}</div>
+            </div>
+            <button type="button" data-remove-planned="${activity.id}" class="secondary">Remove</button>
+          `;
+          activityDropzone.appendChild(card);
+        });
+      }
+      updateSummary();
+    }
+
+    function addCustomActivity() {
+      const name = customActivityNameInput.value.trim();
+      if (!name) { alert('Type an activity name first.'); return; }
+      const id = 'custom-' + Date.now();
+      state.activities.push({ id, title: name, emoji: '✏️', time: '' });
+      customActivityNameInput.value = '';
+      renderActivityOptions();
+    }
+
     function removeActivity(id) {
-      state.activities = state.activities.filter(activity => activity.id !== id);
-      state.planned = state.planned.filter(activity => activity.id !== id);
+      state.activities = state.activities.filter(a => a.id !== id);
+      state.planned = state.planned.filter(a => a.id !== id);
       renderActivityOptions();
       renderPlannedActivities();
     }
 
     function removePlannedActivity(id) {
-      state.planned = state.planned.filter(activity => activity.id !== id);
+      state.planned = state.planned.filter(a => a.id !== id);
       renderActivityOptions();
       renderPlannedActivities();
     }
 
+    // Drag & drop
     function handleDragStart(event) {
+      event.currentTarget.classList.add('dragging');
       event.dataTransfer.setData('text/plain', event.currentTarget.dataset.id);
       event.dataTransfer.effectAllowed = 'move';
     }
@@ -909,77 +1190,413 @@
       activityDropzone.classList.remove('dragover');
       const id = event.dataTransfer.getData('text/plain');
       const activity = state.activities.find(a => a.id === id);
-      if (activity && !state.planned.some(item => item.id === id)) {
+      if (activity && !state.planned.some(p => p.id === id)) {
         state.planned.push(activity);
         renderActivityOptions();
         renderPlannedActivities();
       }
     }
 
-    themeOptions.addEventListener('click', event => {
-      const card = event.target.closest('.theme-card');
+    // Budget
+    function renderBudget() {
+      const spent = state.budget.items.reduce((s, i) => s + i.cost, 0);
+      const total = state.budget.total;
+      const remaining = total - spent;
+      const pct = total > 0 ? Math.min((spent / total) * 100, 100) : 0;
+      const isOver = total > 0 && spent > total;
+
+      budgetTotalDisplay.textContent = fmt(total);
+      budgetSpentDisplay.textContent = fmt(spent);
+      budgetRemainingDisplay.textContent = fmt(remaining);
+      budgetBar.style.width = pct + '%';
+      budgetBar.classList.toggle('over', isOver);
+      budgetRemainingStat.classList.toggle('over', isOver);
+
+      expenseList.innerHTML = '';
+      if (!state.budget.items.length) {
+        expenseList.innerHTML = '<li style="color:var(--muted);font-size:0.9rem;padding:0.5rem 0">No expenses added yet.</li>';
+      } else {
+        state.budget.items.forEach((item, index) => {
+          const li = document.createElement('li');
+          li.className = 'expense-item';
+          li.innerHTML = `
+            <span>${item.name}</span>
+            <div style="display:flex;align-items:center;gap:0.75rem">
+              <span class="expense-amount">${fmt(item.cost)}</span>
+              <button type="button" data-remove-expense="${index}" class="secondary" style="padding:0.4rem 0.75rem;font-size:0.8rem">Remove</button>
+            </div>
+          `;
+          expenseList.appendChild(li);
+        });
+      }
+      updateSummary();
+    }
+
+    function setBudget() {
+      const val = parseFloat(budgetTotalInput.value);
+      if (isNaN(val) || val < 0) { alert('Enter a valid budget amount.'); return; }
+      state.budget.total = val;
+      renderBudget();
+    }
+
+    function addExpense() {
+      const name = expenseNameInput.value.trim();
+      const cost = parseFloat(expenseCostInput.value);
+      if (!name || isNaN(cost) || cost < 0) { alert('Enter a valid expense name and cost.'); return; }
+      state.budget.items.push({ name, cost });
+      expenseNameInput.value = '';
+      expenseCostInput.value = '';
+      renderBudget();
+    }
+
+    function removeExpense(index) {
+      state.budget.items.splice(index, 1);
+      renderBudget();
+    }
+
+    // Food
+    function getFoodConflicts(allergens) {
+      if (!allergens.length) return [];
+      return state.guests.filter(g => g.allergies.some(a => allergens.includes(a))).map(g => g.name);
+    }
+
+    function renderFood() {
+      foodList.innerHTML = '';
+      if (!state.food.length) {
+        foodList.innerHTML = '<li style="color:var(--muted);font-size:0.9rem;padding:0.5rem 0">No food items added yet.</li>';
+        return;
+      }
+      state.food.forEach((item, index) => {
+        const conflicts = getFoodConflicts(item.allergens);
+        const li = document.createElement('li');
+        li.className = `food-item${conflicts.length ? ' conflict' : ''}`;
+        const allergenRow = item.allergens.length
+          ? `<div class="allergy-row">${item.allergens.map(a => `<span class="allergy-tag">${a}</span>`).join('')}</div>`
+          : '';
+        const badge = conflicts.length
+          ? `<span class="conflict-badge">⚠ Conflicts: ${conflicts.join(', ')}</span>`
+          : `<span class="safe-badge">✓ Safe for all</span>`;
+        li.innerHTML = `
+          <div class="food-item-row">
+            <strong>${item.name}</strong>
+            <div style="display:flex;align-items:center;gap:0.5rem">
+              ${badge}
+              <button type="button" data-remove-food="${index}" class="secondary" style="padding:0.4rem 0.75rem;font-size:0.8rem">Remove</button>
+            </div>
+          </div>
+          ${allergenRow}
+        `;
+        foodList.appendChild(li);
+      });
+      updateSummary();
+    }
+
+    function addFoodItem() {
+      const name = foodNameInput.value.trim();
+      if (!name) { alert('Enter a food item name.'); return; }
+      state.food.push({ name, allergens: parseList(foodAllergensInput.value) });
+      foodNameInput.value = '';
+      foodAllergensInput.value = '';
+      renderFood();
+    }
+
+    function removeFoodItem(index) {
+      state.food.splice(index, 1);
+      renderFood();
+    }
+
+    // Lobby
+    function generateInviteText(personalMessage) {
+      if (!state.event.name) return 'Save your event details to generate an invite.';
+      const note = lobbyNote ? lobbyNote.value.trim() : '';
+      const activities = state.planned.map(a => a.title);
+      const foodItems = state.food.map(f => f.name);
+      let text = `🎉 You're invited to: ${state.event.name}\n`;
+      text += `📅 Date: ${state.event.date || 'TBD'}\n`;
+      text += `🕐 Time: ${state.event.startTime || 'TBD'} – ${state.event.endTime || 'TBD'}\n`;
+      text += `📍 Location: ${state.event.location || 'TBD'}\n`;
+      text += `🎨 Theme: ${state.event.theme}\n`;
+      if (state.event.description) text += `\n${state.event.description}\n`;
+      if (activities.length) text += `\n📋 Schedule: ${activities.join(' → ')}\n`;
+      if (foodItems.length) text += `🍽 Food: ${foodItems.join(', ')}\n`;
+      if (state.budget.total > 0) {
+        const spent = state.budget.items.reduce((s, i) => s + i.cost, 0);
+        text += `💰 Budget: ${fmt(state.budget.total)} (${fmt(spent)} planned)\n`;
+      }
+      if (note) text += `\n💬 ${note}`;
+      if (personalMessage) text += `\n\n✉️ Just for you: ${personalMessage}`;
+      return text;
+    }
+
+    function renderLobby() {
+      invitePreview.textContent = generateInviteText();
+
+      const messagesList = document.getElementById('messages-list');
+      messagesList.innerHTML = '';
+      const invited = state.guests.filter(g => g.status !== 'No');
+      if (!invited.length) {
+        messagesList.innerHTML = '<p style="color:var(--muted);font-size:0.9rem">Add guests to write them personal messages.</p>';
+        return;
+      }
+      invited.forEach((guest, rawIndex) => {
+        const gIndex = state.guests.indexOf(guest);
+        const card = document.createElement('div');
+        card.className = 'message-card';
+        const tickId = `tick-${gIndex}`;
+        card.innerHTML = `
+          <div class="message-card-header">
+            <strong>${guest.name}</strong>
+            <span class="status-pill ${guest.status === 'Yes' ? '' : 'status-pending'}">${guest.status}</span>
+          </div>
+          <textarea
+            placeholder="Hey ${guest.name}! So glad you can make it — ${guest.dislikes.length ? `we\'ll make sure to skip ${guest.dislikes[0]}` : 'can\'t wait to see you'}!"
+            data-guest-index="${gIndex}"
+          >${guest.message || ''}</textarea>
+          <div style="display:flex;align-items:center;gap:0.75rem">
+            <button type="button" class="message-copy-btn" data-copy-guest="${gIndex}">Copy ${guest.name}'s invite</button>
+            <span class="msg-copy-tick" id="${tickId}">Copied!</span>
+          </div>
+        `;
+        messagesList.appendChild(card);
+      });
+
+      messagesList.querySelectorAll('textarea[data-guest-index]').forEach(ta => {
+        ta.addEventListener('input', e => {
+          const idx = Number(e.target.dataset.guestIndex);
+          state.guests[idx].message = e.target.value;
+          invitePreview.textContent = generateInviteText();
+        });
+      });
+
+      messagesList.querySelectorAll('[data-copy-guest]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = Number(btn.dataset.copyGuest);
+          const guest = state.guests[idx];
+          const text = generateInviteText(guest.message.trim() || undefined);
+          const tickEl = document.getElementById(`tick-${idx}`);
+          const doShow = () => {
+            if (tickEl) { tickEl.classList.add('show'); setTimeout(() => tickEl.classList.remove('show'), 2500); }
+          };
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).then(doShow).catch(() => fallbackCopy(text, doShow));
+          } else {
+            fallbackCopy(text, doShow);
+          }
+        });
+      });
+    }
+
+    function copyInvite() {
+      const text = generateInviteText();
+      const doShow = () => {
+        copySuccess.classList.add('show');
+        setTimeout(() => copySuccess.classList.remove('show'), 2500);
+      };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(doShow).catch(() => fallbackCopy(text, doShow));
+      } else {
+        fallbackCopy(text, doShow);
+      }
+    }
+
+    function fallbackCopy(text, cb) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      cb();
+    }
+
+    // Summary
+    function updateSummary() {
+      if (state.event.name) {
+        summaryEventName.textContent = state.event.name;
+        summaryEventDate.textContent = `Date: ${state.event.date || 'Not set'} • Time: ${state.event.startTime && state.event.endTime ? `${state.event.startTime} – ${state.event.endTime}` : 'Not set'}`;
+        summaryEventLocation.textContent = `Location: ${state.event.location || 'Not set'}`;
+        summaryEventDescription.textContent = state.event.description || '';
+      } else {
+        summaryEventName.textContent = 'No event created yet.';
+        summaryEventDate.textContent = '';
+        summaryEventLocation.textContent = '';
+        summaryEventDescription.textContent = '';
+      }
+
+      summaryThemeTags.innerHTML = '';
+      const themeTag = document.createElement('span');
+      themeTag.className = 'pill';
+      themeTag.textContent = state.event.theme;
+      summaryThemeTags.appendChild(themeTag);
+      if (state.event.startTime && state.event.endTime) {
+        const dt = document.createElement('span');
+        dt.className = 'pill';
+        dt.textContent = `Duration: ${getDurationLabel(state.event.startTime, state.event.endTime)}`;
+        summaryThemeTags.appendChild(dt);
+      }
+
+      summaryGuestList.innerHTML = '';
+      if (!state.guests.length) {
+        summaryGuestList.innerHTML = '<li class="summary-item">No guests yet.</li>';
+      } else {
+        state.guests.forEach(g => {
+          const li = document.createElement('li');
+          li.className = 'summary-item';
+          const aNote = g.allergies.length ? ` <span style="color:#fcd34d;font-size:0.82rem">⚠ ${g.allergies.join(', ')}</span>` : '';
+          li.innerHTML = `<strong>${g.name}</strong> — ${g.status}${aNote}`;
+          summaryGuestList.appendChild(li);
+        });
+      }
+
+      summaryActivityList.innerHTML = '';
+      if (!state.planned.length) {
+        summaryActivityList.innerHTML = '<li class="summary-item">No activities planned.</li>';
+      } else {
+        state.planned.forEach((a, i) => {
+          const li = document.createElement('li');
+          li.className = 'summary-item';
+          li.textContent = `${i + 1}. ${a.emoji || ''} ${a.title}${a.time ? ` at ${a.time}` : ''}`;
+          summaryActivityList.appendChild(li);
+        });
+      }
+
+      const spent = state.budget.items.reduce((s, i) => s + i.cost, 0);
+      summaryBudget.textContent = state.budget.total > 0
+        ? `Budget: ${fmt(state.budget.total)} | Spent: ${fmt(spent)} | Remaining: ${fmt(state.budget.total - spent)}`
+        : 'No budget set.';
+      summaryBudget.style.color = (state.budget.total > 0 && spent > state.budget.total) ? 'var(--danger)' : '';
+
+      summaryFoodList.innerHTML = '';
+      if (!state.food.length) {
+        summaryFoodList.innerHTML = '<li class="summary-item">No food items planned.</li>';
+      } else {
+        state.food.forEach(item => {
+          const conflicts = getFoodConflicts(item.allergens);
+          const li = document.createElement('li');
+          li.className = 'summary-item';
+          li.textContent = item.name + (conflicts.length ? ` ⚠ ${conflicts.join(', ')}` : ' ✓');
+          summaryFoodList.appendChild(li);
+        });
+      }
+
+      renderLobby();
+    }
+
+    // Event form
+    function saveEvent() {
+      state.event.name = eventNameInput.value.trim();
+      state.event.date = eventDateInput.value;
+      state.event.startTime = eventStartInput.value;
+      state.event.endTime = eventEndInput.value;
+      state.event.location = eventLocationInput.value.trim();
+      state.event.description = eventDescriptionInput.value.trim();
+      state.event.theme = eventThemeSelect.value;
+
+      if (!state.event.name || !state.event.date || !state.event.location || !state.event.startTime || !state.event.endTime) {
+        alert('Please fill in name, date, location, and event times.');
+        return;
+      }
+      const sm = state.event.startTime.split(':').map(Number).reduce((a, b) => a * 60 + b, 0);
+      const em = state.event.endTime.split(':').map(Number).reduce((a, b) => a * 60 + b, 0);
+      if (sm === em) { alert('Start and end time cannot be the same.'); return; }
+
+      state.selectedTheme = state.event.theme;
+      renderThemeOptions();
+      updateSummary();
+      alert('Event details saved!');
+    }
+
+    function resetEvent() {
+      form.reset();
+      state.event = { name: '', date: '', startTime: '', endTime: '', location: '', description: '', theme: 'Birthday' };
+      state.selectedTheme = 'Birthday';
+      eventThemeSelect.value = 'Birthday';
+      setDateRange();
+      renderThemeOptions();
+      updateSummary();
+    }
+
+    // Event listeners
+    saveEventButton.addEventListener('click', saveEvent);
+    resetEventButton.addEventListener('click', resetEvent);
+
+    themeOptions.addEventListener('click', e => {
+      const card = e.target.closest('.theme-card');
       if (!card) return;
       state.selectedTheme = card.dataset.theme;
       renderThemeOptions();
     });
-
-    saveEventButton.addEventListener('click', saveEvent);
-    resetEventButton.addEventListener('click', resetEvent);
-    addGuestButton.addEventListener('click', addGuest);
-
-    guestList.addEventListener('click', event => {
-      const button = event.target.closest('button');
-      if (!button) return;
-      const index = Number(button.dataset.index);
-      if (button.dataset.action === 'remove') removeGuest(index);
-      if (button.dataset.action === 'toggle') toggleGuest(index);
-    });
-
-    activityOptions.addEventListener('click', event => {
-      const button = event.target.closest('button');
-      if (!button) return;
-      const id = button.dataset.remove;
-      if (id) removeActivity(id);
-    });
-
-    activityDropzone.addEventListener('click', event => {
-      const button = event.target.closest('button');
-      if (!button) return;
-      const id = button.dataset.removePlanned;
-      if (id) removePlannedActivity(id);
-    });
-
-    activityDropzone.addEventListener('dragover', handleDragOver);
-    activityDropzone.addEventListener('dragleave', handleDragLeave);
-    activityDropzone.addEventListener('drop', handleDrop);
-
-    function renderActivitiesWithDrag() {
-      renderActivityOptions();
-      renderPlannedActivities();
-      activityOptions.querySelectorAll('.activity-card').forEach(card => {
-        card.addEventListener('dragstart', handleDragStart);
-      });
-    }
 
     eventThemeSelect.addEventListener('change', () => {
       state.selectedTheme = eventThemeSelect.value;
       renderThemeOptions();
     });
 
-    resetEvent();
-    renderGuestList();
-    renderActivitiesWithDrag();
-    updateSummary();
+    addGuestButton.addEventListener('click', addGuest);
+    guestNameInput.addEventListener('keydown', e => { if (e.key === 'Enter') addGuest(); });
 
-    const observer = new MutationObserver(() => {
-      activityOptions.querySelectorAll('.activity-card').forEach(card => {
-        if (!card.hasAttribute('data-drag-bound')) {
-          card.addEventListener('dragstart', handleDragStart);
-          card.setAttribute('data-drag-bound', 'true');
-        }
-      });
+    guestList.addEventListener('click', e => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      const idx = Number(btn.dataset.index);
+      if (btn.dataset.action === 'remove') removeGuest(idx);
+      if (btn.dataset.action === 'toggle') toggleGuest(idx);
     });
-    observer.observe(activityOptions, { childList: true });
+
+    addCustomActivityButton.addEventListener('click', addCustomActivity);
+    customActivityNameInput.addEventListener('keydown', e => { if (e.key === 'Enter') addCustomActivity(); });
+
+    activityOptions.addEventListener('click', e => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      if (btn.dataset.remove) removeActivity(btn.dataset.remove);
+    });
+
+    activityDropzone.addEventListener('click', e => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      if (btn.dataset.removePlanned) removePlannedActivity(btn.dataset.removePlanned);
+    });
+
+    activityDropzone.addEventListener('dragover', handleDragOver);
+    activityDropzone.addEventListener('dragleave', handleDragLeave);
+    activityDropzone.addEventListener('drop', handleDrop);
+
+    setBudgetButton.addEventListener('click', setBudget);
+    addExpenseButton.addEventListener('click', addExpense);
+
+    expenseList.addEventListener('click', e => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      if (btn.dataset.removeExpense !== undefined) removeExpense(Number(btn.dataset.removeExpense));
+    });
+
+    addFoodButton.addEventListener('click', addFoodItem);
+    foodNameInput.addEventListener('keydown', e => { if (e.key === 'Enter') addFoodItem(); });
+
+    foodList.addEventListener('click', e => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      if (btn.dataset.removeFood !== undefined) removeFoodItem(Number(btn.dataset.removeFood));
+    });
+
+    copyInviteButton.addEventListener('click', copyInvite);
+    lobbyNote.addEventListener('input', () => {
+      invitePreview.textContent = generateInviteText();
+      renderLobby();
+    });
+
+    // Init
+    setDateRange();
+    renderThemeOptions();
+    renderGuestList();
+    renderActivityOptions();
+    renderPlannedActivities();
+    renderBudget();
+    renderFood();
+    renderLobby();
+    updateSummary();
   </script>
 </body>
 </html>
