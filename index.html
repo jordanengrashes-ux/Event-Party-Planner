@@ -28,6 +28,7 @@
       background: radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 30%),
         linear-gradient(180deg, #020617 0%, #0f172a 100%);
       color: var(--text);
+      transition: background 0.7s ease;
     }
 
     header {
@@ -131,7 +132,7 @@
       cursor: pointer;
       padding: 0.95rem 1.2rem;
       color: var(--text);
-      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
       transition: transform 0.2s, filter 0.2s;
     }
 
@@ -425,7 +426,7 @@
 
     .budget-bar {
       height: 100%;
-      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
       border-radius: 999px;
       transition: width 0.4s ease;
     }
@@ -603,6 +604,83 @@
     @media (max-width: 680px) {
       .inline-grid, .theme-options, .drag-grid, .budget-stats { grid-template-columns: 1fr; }
     }
+
+    /* Feedback */
+    .feedback-fab {
+      position: fixed;
+      bottom: 1.75rem;
+      right: 1.75rem;
+      z-index: 100;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: var(--text);
+      border: none;
+      border-radius: 999px;
+      padding: 0.85rem 1.35rem;
+      font-size: 0.95rem;
+      font: inherit;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(14, 165, 233, 0.35);
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    .feedback-fab:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .feedback-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.7);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .feedback-overlay.open { display: flex; }
+
+    .feedback-modal {
+      background: #111827;
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
+      display: grid;
+      gap: 1rem;
+    }
+
+    .feedback-modal h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .feedback-modal p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .feedback-modal textarea {
+      min-height: 130px;
+      margin-bottom: 0;
+    }
+
+    .feedback-modal input {
+      margin-bottom: 0;
+    }
+
+    .feedback-modal-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 <body>
@@ -640,6 +718,7 @@
               <label for="event-theme">Theme</label>
               <select id="event-theme">
                 <option value="Birthday">Birthday</option>
+                <option value="Wedding">Wedding</option>
                 <option value="Holiday">Holiday</option>
                 <option value="Costume">Costume</option>
                 <option value="Sports">Sports</option>
@@ -682,6 +761,10 @@
           <article class="theme-card active" data-theme="Birthday">
             <h3>🎂 Birthday</h3>
             <p>Bright balloons, cake, and cheerful decorations.</p>
+          </article>
+          <article class="theme-card" data-theme="Wedding">
+            <h3>💍 Wedding</h3>
+            <p>Romantic roses, soft gold, and elegant celebration.</p>
           </article>
           <article class="theme-card" data-theme="Holiday">
             <h3>🎄 Holiday</h3>
@@ -914,6 +997,29 @@
     </section>
   </main>
 
+  <!-- Feedback floating button -->
+  <button class="feedback-fab" id="feedback-fab">💬 Feedback</button>
+
+  <!-- Feedback modal -->
+  <div class="feedback-overlay" id="feedback-overlay" role="dialog" aria-modal="true" aria-labelledby="feedback-modal-title">
+    <div class="feedback-modal">
+      <h2 id="feedback-modal-title">Send feedback</h2>
+      <p>Found a bug, have an idea, or just want to say something? Send it directly to the developer.</p>
+      <div>
+        <label for="feedback-subject">Subject</label>
+        <input id="feedback-subject" type="text" placeholder="e.g. Bug report, Feature idea..." />
+      </div>
+      <div>
+        <label for="feedback-body">Your message</label>
+        <textarea id="feedback-body" placeholder="Tell me what's on your mind..."></textarea>
+      </div>
+      <div class="feedback-modal-actions">
+        <button type="button" class="secondary" id="feedback-cancel">Cancel</button>
+        <button type="button" id="feedback-send">Send feedback</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const state = {
       event: { name: '', date: '', startTime: '', endTime: '', location: '', description: '', theme: 'Birthday' },
@@ -1019,6 +1125,45 @@
       return '$' + Number(n).toFixed(2);
     }
 
+    // Theme palettes — each entry changes the full page look
+    const partyThemePalettes = {
+      Birthday: {
+        bg: 'radial-gradient(circle at top, rgba(56,189,248,0.14), transparent 32%), linear-gradient(180deg,#020617 0%,#0f172a 100%)',
+        accent: '#38bdf8', accentStrong: '#0ea5e9',
+      },
+      Wedding: {
+        bg: 'radial-gradient(circle at top, rgba(240,171,252,0.18), transparent 35%), linear-gradient(180deg,#0d0010 0%,#1a0a2e 100%)',
+        accent: '#e879f9', accentStrong: '#d946ef',
+      },
+      Holiday: {
+        bg: 'radial-gradient(circle at top, rgba(74,222,128,0.15), transparent 32%), linear-gradient(180deg,#010a03 0%,#071a0f 100%)',
+        accent: '#4ade80', accentStrong: '#22c55e',
+      },
+      Costume: {
+        bg: 'radial-gradient(circle at top, rgba(251,146,60,0.18), transparent 35%), linear-gradient(180deg,#0d0500 0%,#1a0a00 100%)',
+        accent: '#fb923c', accentStrong: '#f97316',
+      },
+      Sports: {
+        bg: 'radial-gradient(circle at top, rgba(52,211,153,0.14), transparent 32%), linear-gradient(180deg,#000a05 0%,#001a10 100%)',
+        accent: '#34d399', accentStrong: '#10b981',
+      },
+      Formal: {
+        bg: 'radial-gradient(circle at top, rgba(251,191,36,0.13), transparent 32%), linear-gradient(180deg,#050300 0%,#120c00 100%)',
+        accent: '#fbbf24', accentStrong: '#f59e0b',
+      },
+      Casual: {
+        bg: 'radial-gradient(circle at top, rgba(96,165,250,0.13), transparent 32%), linear-gradient(180deg,#020617 0%,#0c1628 100%)',
+        accent: '#60a5fa', accentStrong: '#3b82f6',
+      },
+    };
+
+    function applyPartyTheme(name) {
+      const palette = partyThemePalettes[name] || partyThemePalettes.Birthday;
+      document.body.style.background = palette.bg;
+      document.documentElement.style.setProperty('--accent', palette.accent);
+      document.documentElement.style.setProperty('--accent-strong', palette.accentStrong);
+    }
+
     // Theme
     function renderThemeOptions() {
       themeOptions.querySelectorAll('.theme-card').forEach(card => {
@@ -1026,6 +1171,7 @@
       });
       eventThemeSelect.value = state.selectedTheme;
       state.event.theme = state.selectedTheme;
+      applyPartyTheme(state.selectedTheme);
       updateSummary();
     }
 
@@ -1585,6 +1731,34 @@
     lobbyNote.addEventListener('input', () => {
       invitePreview.textContent = generateInviteText();
       renderLobby();
+    });
+
+    // Feedback
+    const feedbackFab     = document.getElementById('feedback-fab');
+    const feedbackOverlay = document.getElementById('feedback-overlay');
+    const feedbackCancel  = document.getElementById('feedback-cancel');
+    const feedbackSend    = document.getElementById('feedback-send');
+    const feedbackSubject = document.getElementById('feedback-subject');
+    const feedbackBody    = document.getElementById('feedback-body');
+
+    feedbackFab.addEventListener('click', () => feedbackOverlay.classList.add('open'));
+    feedbackCancel.addEventListener('click', closeFeedback);
+    feedbackOverlay.addEventListener('click', e => { if (e.target === feedbackOverlay) closeFeedback(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFeedback(); });
+
+    function closeFeedback() {
+      feedbackOverlay.classList.remove('open');
+    }
+
+    feedbackSend.addEventListener('click', () => {
+      const subject = feedbackSubject.value.trim() || 'App Feedback';
+      const body = feedbackBody.value.trim();
+      if (!body) { alert('Please write a message before sending.'); return; }
+      const mailto = `mailto:jordanengrashes@gmail.com?subject=${encodeURIComponent('[Party Planner] ' + subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+      feedbackBody.value = '';
+      feedbackSubject.value = '';
+      closeFeedback();
     });
 
     // Init
